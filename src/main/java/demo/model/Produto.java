@@ -1,11 +1,11 @@
-package demo.aluno.model;
+package demo.model;
 
+import demo.model.enums.Categoria;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +13,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Aluno {
+public class Produto {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,22 +21,25 @@ public class Aluno {
 
 	@NotBlank
 	private String nome;
-	@NotBlank @Email
-    private String email;
+	@NotBlank
+	private Float valor;
+	private Categoria categoria;
+	public Produto() {}
 	
-	public Aluno() {}
-	
-	public Aluno(String nome, String email) {
+	public Produto(String nome, Float valor, Categoria categoria) {
 		super();
 		this.nome = nome;
-		this.email = email;
+		this.valor = valor;
+		this.categoria = categoria;
 	}
 
-	public Aluno(Integer id, String nome, String email) {
+	public Produto(Integer id, String nome, Float valor, Categoria categoria) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.email = email;
+		this.valor = valor;
+		this.categoria = categoria;
+		
 	}
 	
 	

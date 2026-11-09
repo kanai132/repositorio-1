@@ -1,4 +1,4 @@
-package demo.aluno.exception;
+package demo.exception;
 
 import java.util.HashMap;
 import java.util.Map;

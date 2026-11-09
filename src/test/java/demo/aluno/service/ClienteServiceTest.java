@@ -16,74 +16,75 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import demo.aluno.model.Aluno;
-import demo.aluno.model.AlunoRepository;
+import demo.model.Cliente;
+import demo.model.ClienteRepository;
+import demo.service.ClienteService;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 @ExtendWith(MockitoExtension.class)
-class AlunoServiceTest {
+class ClienteServiceTest {
 
-	public static final Aluno ALUNO_VALIDO = new Aluno("Murakami", "murakami@ifsp.edu.br");
-	public static final Aluno ALUNO_INVALIDO = new Aluno("", "murakami.ifsp.edu.br");
+	public static final Cliente CLIENTE_VALIDO = new Cliente("Murakami");
+	public static final Cliente CLIENTE_INVALIDO = new Cliente("" );
 
 	@InjectMocks
-	private AlunoService alunoService;
+	private ClienteService clienteService;
 
 	@Mock
-	private AlunoRepository alunoRepository;
+	private ClienteRepository clienteRepository;
 
 	@Test
-	void criarAluno_ComDadosValidos_RetornaAluno() {
+	void criarCliente_ComDadosValidos_RetornaCliente() {
 
-		when(alunoRepository.save(ALUNO_VALIDO)).thenReturn(ALUNO_VALIDO);
+		when(clienteRepository.save(CLIENTE_VALIDO)).thenReturn(CLIENTE_VALIDO);
 
-		Aluno a = alunoService.save(ALUNO_VALIDO);
+		Cliente a = clienteService.save(CLIENTE_VALIDO);
 
-		assertSame(a, ALUNO_VALIDO);
-		assertThat(a).isEqualTo(ALUNO_VALIDO);
+		assertSame(a, CLIENTE_VALIDO);
+		assertThat(a).isEqualTo(CLIENTE_VALIDO);
 	}
 
 	@Test
-	void criarAluno_ComDadosInvalidos_ThrowsException() {
+	void criarCliente_ComDadosInvalidos_ThrowsException() {
 
-		when(alunoRepository.save(ALUNO_INVALIDO)).thenThrow(RuntimeException.class);
+		when(clienteRepository.save(CLIENTE_INVALIDO)).thenThrow(RuntimeException.class);
 
-		assertThatThrownBy(() -> alunoService.save(ALUNO_INVALIDO)).isInstanceOf(RuntimeException.class);
+		assertThatThrownBy(() -> clienteService.save(CLIENTE_INVALIDO)).isInstanceOf(RuntimeException.class);
 	}
 
 	@Test
-	void excluirAluno_ComIdExistente() {
+	void excluirCliente_ComIdExistente() {
 
-		assertThatCode(() -> alunoService.deleteById(1));
+		assertThatCode(() -> clienteService.deleteById(1));
 	}
 
 	@Test
 	void excluirAluno_ComIdInexistente_ThrowException() {
 
-		doThrow(new RuntimeException()).when(alunoRepository).deleteById(99);
+		doThrow(new RuntimeException()).when(clienteRepository).deleteById(99);
 
-		assertThatThrownBy(() -> alunoService.deleteById(99)).isInstanceOf(RuntimeException.class);
+		assertThatThrownBy(() -> clienteService.deleteById(99)).isInstanceOf(RuntimeException.class);
 	}
 
 	@Test
 	void chamar_getAll() {
 
-		List<Aluno> alunos = new ArrayList<>();
-		alunos.add(ALUNO_INVALIDO);
-		alunos.add(ALUNO_VALIDO);
-		alunos.add(ALUNO_VALIDO);
+		List<Cliente> clientes = new ArrayList<>();
+		clientes.add(CLIENTE_INVALIDO);
+		clientes.add(CLIENTE_VALIDO);
+		clientes.add(CLIENTE_VALIDO);
 
-		when(alunoRepository.findAll()).thenReturn(alunos);
+		when(clienteRepository.findAll()).thenReturn(clientes);
 
-		List<Aluno> result = (List<Aluno>) alunoService.getAll();
+		List<Cliente> result = (List<Cliente>) clienteService.getAll();
 		log.info(result.size());
 
 		assertThat(result).isNotEmpty();
 		assertThat(result.size()).isEqualTo(3);
 		assertSame(result.size(), 3);
 		assertThat(result).hasSize(3);
-		assertThat(result.get(0).equals(ALUNO_INVALIDO));
+		assertThat(result.get(0).equals(CLIENTE_INVALIDO));
 
 	}
 

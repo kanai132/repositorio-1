@@ -1,28 +1,28 @@
-package demo.aluno.dto;
+package demo.dto;
 
-import demo.aluno.model.Aluno;
+import demo.model.Cliente;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class AlunoDTO {
+public class ClienteDTO {
 
 	private Integer id;
 	@NotBlank(message = "O nome do produto é obrigatório!")
 	private String nome;
 	@Email(message = "Email inválido!")
     @NotBlank(message = "O email é obrigatório!")
-	private String email;
+	
 
 
-	public AlunoDTO(Integer id, String nome, String email) {
+	public ClienteDTO(Integer id, String nome) {
 		this.id = id;
 		this.nome = nome;
-		this.email = email;
+	
 	}
 
-	public static AlunoDTO from(Aluno aluno) {
-		return new AlunoDTO(aluno.getId(), aluno.getNome(), aluno.getEmail());
+	public static ClienteDTO from(Cliente cliente) {
+		return new ClienteDTO(cliente.getId(), cliente.getNome() );
 	}
 }
