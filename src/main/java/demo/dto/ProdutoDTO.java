@@ -3,6 +3,7 @@ package demo.dto;
 import demo.model.Produto;
 import demo.model.enums.Categoria;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
@@ -11,7 +12,7 @@ public class ProdutoDTO {
 	private Integer id;
 	@NotBlank(message = "O nome do produto é obrigatório!")
 	private String nome;
-    @NotBlank(message = "O email é obrigatório!")
+    @NotNull(message = "O valor é obrigatório!")
     private Float valor;
 	private Categoria categoria;
 

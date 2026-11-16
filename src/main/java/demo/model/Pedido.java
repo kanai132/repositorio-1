@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,9 +23,9 @@ public class Pedido {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private @Nullable Integer id;
 	
-	@NotBlank
+	@NotNull
 	private LocalDate data;
-	@NotBlank
+	
 	@ManyToOne
 	private Cliente cliente;
 	private Status status;

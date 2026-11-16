@@ -2,32 +2,34 @@ package demo.service;
 
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import demo.model.Cliente;
-import demo.model.ClienteRepository;
+import demo.model.Pedido;
+import demo.model.PedidoRepository;
 
 @Service
 public class PedidoService {
 
-	@Autowired
-	private ClienteRepository clienteRepository;
+	private final PedidoRepository pedidoRepository;
 
-	public Iterable<Cliente> getAll() {
-		return clienteRepository.findAll();
+	PedidoService(PedidoRepository pedidoRepository) {
+		this.pedidoRepository = pedidoRepository;
 	}
 
-	public Cliente save(Cliente a) {
-		return clienteRepository.save(a);
+	public Iterable<Pedido> getAll() {
+		return pedidoRepository.findAll();
 	}
 
-	public Optional<Cliente> findById(Integer id) {
-		return clienteRepository.findById(id);
+	public Pedido save(Pedido a) {
+		return pedidoRepository.save(a);
+	}
+
+	public Optional<Pedido> findById(Integer id) {
+		return pedidoRepository.findById(id);
 	}
 
 	public void deleteById(Integer id) {
-		clienteRepository.deleteById(id);
+		pedidoRepository.deleteById(id);
 	}
 
 }

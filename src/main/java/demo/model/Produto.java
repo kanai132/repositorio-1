@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,7 +22,7 @@ public class Produto {
 
 	@NotBlank
 	private String nome;
-	@NotBlank
+	@NotNull
 	private Float valor;
 	private Categoria categoria;
 	public Produto() {}

@@ -116,7 +116,7 @@ public class ClienteController {
 	}
 
 	@Operation(summary = "Recuperar Clientes.", description = "Retorna uma coleção de Clientes.")
-	@GetMapping("/alunos")
+	@GetMapping("/clientes")
 	public @ResponseBody Iterable<Cliente> getAll() {
 
 		log.info("getAll()");
